@@ -10,7 +10,7 @@ http://python.jobbole.com/82221/
 ### 内置异常
 
 内置异常|    含义|
----
+---|---
 Exception |   所有异常的基类
 AttributeError |  特性引用或复制失败
 IOError | 试图打开不存在的文件
@@ -97,15 +97,15 @@ Python标准日志模块非常简单易用，十分灵活
 import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
- 
+
 logger.info('Start reading database')
 # read database here
- 
+
 records = {'john': 55, 'tom': 66}
 logger.debug('Records: %s', records)
 logger.info('Updating records ...')
 # update records here
- 
+
 logger.info('Finish updating records')
 
 # result
@@ -121,8 +121,8 @@ INFO:__main__:Finish updating records
 ### logging 常用功能介绍
 #### Formatter
 
-|参数|  含义
-|-----| -----
+参数 |  含义
+------------ | -----
 %(name)s |    Logger的名字
 %(levelno)s | 数字形式的日志级别
 %(levelname)s |   文本形式的日志级别
@@ -180,21 +180,21 @@ INFO:__main__:Finish updating records
 
 ```python
 import logging
- 
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
- 
+
 # create a file handler
 handler = logging.FileHandler('hello.log')
 handler.setLevel(logging.INFO)
- 
+
 # create a logging format
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
- 
+
 # add the handlers to the logger
 logger.addHandler(handler)
- 
+
 logger.info('Hello baby')
 ```
 
@@ -210,20 +210,20 @@ logger.info('Hello baby')
 def complex_algorithm(items):
     for i, item in enumerate(items):
         # do some complex algorithm computation
- 
+
         logger.debug('%s iteration, item=%s', i, item)
 ```
 
 - Info：在处理请求或者服务器状态变化等日常事务中，我会使用 INFO 等级。
-- 
+
 ```python
 def handle_request(request):
     logger.info('Handling request %s', request)
     # handle request here
- 
+
     result = 'result'
     logger.info('Return result: %s', result)
- 
+
 def start_service():
     logger.info('Starting service at port %s ...', port)
     service.start()
@@ -288,19 +288,19 @@ logging模块保证在同一个python解释器内，多次调用logging.getLogge
 ```python
 import logging
 import logging.config
- 
+
 logger = logging.getLogger(__name__)
- 
-# load config from file 
- 
+
+# load config from file
+
 # logging.config.fileConfig('logging.ini', disable_existing_loggers=False)
- 
+
 # or, for dictConfig
- 
+
 logging.config.dictConfig({
     'version': 1,              
     'disable_existing_loggers': False,  # this fixes the problem
- 
+
     'formatters': {
         'standard': {
             'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
@@ -320,7 +320,7 @@ logging.config.dictConfig({
         }
     }
 })
- 
+
 logger.info('It works!')
 ```
 
@@ -331,8 +331,8 @@ logger.info('It works!')
 ```python
 import json
 import logging.config
- 
-def setup_logging(default_path='logging.json', 
+
+def setup_logging(default_path='logging.json',
                 default_level=logging.INFO,
                 env_key='LOG_CFG'):
 
@@ -355,10 +355,10 @@ def setup_logging(default_path='logging.json',
 ```python
 import os
 import logging.config
- 
+
 import yaml
- 
-def setup_logging(default_path='logging.yaml', 
+
+def setup_logging(default_path='logging.yaml',
                 default_level=logging.INFO,
                 env_key='LOG_CFG'):
     #Setup logging configuration
